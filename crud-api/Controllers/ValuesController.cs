@@ -54,12 +54,15 @@ namespace crud_api.Controllers
             }
         }
         [HttpPost("AddEmployee")]
-        public async Task<Object> AddEmployee([FromBody] TblEmployee Employee)
+        public async Task<Object> AddEmployee(string name,string position)
         {
             try
             {
+                var employee = new TblEmployee { 
+                EName=name,EPosition=position
+                };
                 var dbClass = new Task_DAL.dbClass();
-                await dbClass.addEmployees(Employee);
+                await dbClass.addEmployees(employee);
                 return true;
             }
             catch (Exception e)
